@@ -1007,6 +1007,112 @@ h3 { font-size: 22px; margin-bottom: 16px; }
   letter-spacing: 0.06em;
 }
 
+/* ─── Slot Modal ─── */
+.slot-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  transition: opacity 0.2s;
+  pointer-events: none;
+}
+.slot-modal:not([hidden]) { pointer-events: auto; }
+.slot-modal.show { opacity: 1; }
+.slot-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 20, 25, 0.78);
+  backdrop-filter: blur(6px);
+  cursor: pointer;
+}
+:root[data-theme="light"] .slot-modal-backdrop {
+  background: rgba(60, 50, 30, 0.45);
+}
+.slot-modal-card {
+  position: relative;
+  background: var(--ink);
+  border: 1px solid var(--brass);
+  padding: 40px 40px 32px;
+  max-width: 520px;
+  width: 100%;
+  transform: translateY(12px);
+  transition: transform 0.2s ease;
+}
+.slot-modal.show .slot-modal-card { transform: translateY(0); }
+.slot-modal-x {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  background: transparent;
+  border: none;
+  color: var(--steel);
+  font-size: 24px;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  font-family: serif;
+  line-height: 1;
+  transition: color 0.2s;
+}
+.slot-modal-x:hover { color: var(--brass); }
+.slot-modal-meta {
+  display: flex;
+  gap: 14px;
+  align-items: baseline;
+  margin-bottom: 18px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+.slot-modal-num { color: var(--brass); }
+.slot-modal-status { color: var(--steel); }
+.slot-modal-title {
+  font-family: 'IBM Plex Serif', serif;
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--paper);
+  margin-bottom: 10px;
+  line-height: 1.3;
+}
+.slot-modal-slot {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 13px;
+  color: var(--paper-soft);
+  letter-spacing: 0.04em;
+  margin-bottom: 22px;
+  padding-bottom: 18px;
+  border-bottom: 1px dashed var(--ink-line);
+}
+.slot-modal-body {
+  font-size: 14px;
+  color: var(--paper-soft);
+  line-height: 1.7;
+  margin-bottom: 32px;
+}
+.slot-modal-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.slot-modal-actions .btn { padding: 14px 22px; }
+
+@keyframes cellPulse {
+  0%, 100% { box-shadow: inset 0 0 0 0 transparent; }
+  40%, 70% { box-shadow: inset 0 0 0 2px var(--amber); }
+}
+.cell.pulse { animation: cellPulse 1.2s ease-in-out; }
+
+@media (max-width: 640px) {
+  .slot-modal-card { padding: 32px 24px 24px; }
+  .slot-modal-actions { flex-direction: column-reverse; }
+  .slot-modal-actions .btn { width: 100%; justify-content: center; }
+}
+
 footer {
   border-top: 1px solid var(--ink-line);
   padding: 48px 0 32px;
@@ -1053,10 +1159,10 @@ footer {
   <div class="container">
     <div class="logo">MR<span class="dot">.</span>MARCO</div>
     <ul class="nav-links">
-      <li><a href="#model">Model</a></li>
-      <li><a href="#matrix">Capability</a></li>
-      <li><a href="#moats">Moats</a></li>
-      <li><a href="#apply">Apply</a></li>
+      <li><a href="#model">联盟模式</a></li>
+      <li><a href="#matrix">装备矩阵</a></li>
+      <li><a href="#moats">联盟壁垒</a></li>
+      <li><a href="#apply">申请入会</a></li>
     </ul>
     <div class="theme-toggle" role="group" aria-label="Theme toggle">
       <button class="theme-btn" data-set-theme="light" data-active="false">Day</button>
@@ -1073,7 +1179,7 @@ footer {
       <div>
         <div class="section-label">
           <span class="num">/01</span>
-          <span>The Alliance</span>
+          <span>联盟概览</span>
           <span class="dash">—</span>
           <span>Mr.Marco</span>
         </div>
@@ -1083,7 +1189,7 @@ footer {
         </p>
 
         <div class="heritage">
-          <div class="heritage-label">/ BACKED BY · 20 YEARS OF INDUSTRY HERITAGE</div>
+          <div class="heritage-label">/ 联合背书 · 二十年行业沉淀</div>
           <div class="heritage-items">
             <div class="heritage-item">
               <div class="heritage-name">华人螺丝网</div>
@@ -1109,28 +1215,28 @@ footer {
       </div>
 
       <div class="hero-schematic">
-        <div class="schematic-label">/ ALLIANCE KPI ·  LIVE</div>
+        <div class="schematic-label">/ 联盟数据 · 实时</div>
         <div class="kpi-grid">
           <div class="kpi">
             <div class="kpi-value">10<span class="unit">+</span></div>
-            <div class="kpi-label">Founding Members</div>
+            <div class="kpi-label">创始成员</div>
           </div>
           <div class="kpi">
             <div class="kpi-value">17</div>
-            <div class="kpi-label">Capability Slots</div>
+            <div class="kpi-label">品类格子</div>
           </div>
           <div class="kpi">
             <div class="kpi-value">3</div>
-            <div class="kpi-label">Launch Markets</div>
+            <div class="kpi-label">首批市场</div>
           </div>
           <div class="kpi">
-            <div class="kpi-value">10<span class="unit">YR</span></div>
-            <div class="kpi-label">Service Warranty</div>
+            <div class="kpi-value">10<span class="unit">年</span></div>
+            <div class="kpi-label">服务承诺</div>
           </div>
         </div>
         <div class="ticker">
-          <span class="live">CONSORTIUM · INTAKE OPEN</span>
-          <span>EU · NA · IN</span>
+          <span class="live">联盟招募中</span>
+          <span>欧洲 · 北美 · 印度</span>
         </div>
       </div>
     </div>
@@ -1142,39 +1248,39 @@ footer {
   <div class="container">
     <div class="section-label">
       <span class="num">/02</span>
-      <span>Inflection</span>
+      <span>行业拐点</span>
       <span class="dash">—</span>
-      <span>Why Now</span>
+      <span>为什么是现在</span>
     </div>
     <h2>中国紧固件装备的<br>第三次出海拐点。</h2>
     <p class="lede">三十年产能出海，十年贸易出海，下一个十年——品牌出海与整线出海，主导权在装备厂自己手里。</p>
 
     <div class="inflection-grid">
       <div class="inflection-card past">
-        <div class="inflection-era">1995 — 2010  ·  ERA I</div>
+        <div class="inflection-era">1995 — 2010  ·  第一阶段</div>
         <h3>产能出海</h3>
         <p>装备做出来了，订单进来了，利润大头在海外品牌商和经销商手里。中国厂家是无名工厂。</p>
         <div class="inflection-stat">
           <div class="inflection-stat-value">8% — 12%</div>
-          <div class="inflection-stat-label">Avg. Net Margin</div>
+          <div class="inflection-stat-label">平均净利率</div>
         </div>
       </div>
       <div class="inflection-card current">
-        <div class="inflection-era">2010 — 2024  ·  ERA II</div>
+        <div class="inflection-era">2010 — 2024  ·  第二阶段</div>
         <h3>贸易出海</h3>
         <p>外贸公司与平台崛起，订单更直接，但单机贸易、压价竞争、售后无人兜底。装备厂仍在低端单机赛道内卷。</p>
         <div class="inflection-stat">
           <div class="inflection-stat-value">12% — 18%</div>
-          <div class="inflection-stat-label">Avg. Net Margin</div>
+          <div class="inflection-stat-label">平均净利率</div>
         </div>
       </div>
       <div class="inflection-card future">
-        <div class="inflection-era">2025 →  ·  ERA III</div>
+        <div class="inflection-era">2025 起  ·  第三阶段</div>
         <h3>品牌与整线出海</h3>
-        <p>欧美客户要的不是单机，是 turnkey line 加十年服务。这件事单家装备厂做不了——联盟可以。Mr.Marco 是中国版的产业集群品牌。</p>
+        <p>欧美客户要的不是单机，是整线交付加十年服务。这件事单家装备厂做不了——联盟可以。Mr.Marco 是中国版的产业集群品牌。</p>
         <div class="inflection-stat">
           <div class="inflection-stat-value">28% — 40%</div>
-          <div class="inflection-stat-label">Target Net Margin</div>
+          <div class="inflection-stat-label">目标净利率</div>
         </div>
       </div>
     </div>
@@ -1186,9 +1292,9 @@ footer {
   <div class="container">
     <div class="section-label">
       <span class="num">/03</span>
-      <span>The Model</span>
+      <span>联盟模式</span>
       <span class="dash">—</span>
-      <span>Division of Labour</span>
+      <span>装备厂只做生产</span>
     </div>
     <h2>你只做生产。<br>其余全部由 Mr.Marco 承担。</h2>
     <p class="lede">装备厂保留全部生产制造与工艺主权，Mr.Marco 接管除制造外的全部环节——从品牌、销售、出口、认证，到海外安装、备件、十年服务。</p>
@@ -1197,7 +1303,7 @@ footer {
       <div class="model-col left">
         <div class="model-col-header">
           <div class="model-col-title">装备厂只做</div>
-          <div class="model-col-tag">/ Manufacturer</div>
+          <div class="model-col-tag">/ 生产单元</div>
         </div>
         <ul class="model-items">
           <li><span class="idx">01</span><span>研发与机型设计</span></li>
@@ -1207,12 +1313,12 @@ footer {
         </ul>
       </div>
       <div class="model-divider">
-        <span class="model-divider-text">MR.MARCO LINE</span>
+        <span class="model-divider-text">MR.MARCO · 分界</span>
       </div>
       <div class="model-col right">
         <div class="model-col-header">
           <div class="model-col-title">Mr.Marco 全包</div>
-          <div class="model-col-tag">/ Alliance</div>
+          <div class="model-col-tag">/ 联盟总承包</div>
         </div>
         <ul class="model-items">
           <li><span class="idx">01</span><span>海外品牌与市场（站点、展会、SEM）</span></li>
@@ -1236,16 +1342,16 @@ footer {
   <div class="container">
     <div class="section-label">
       <span class="num">/04</span>
-      <span>Capability Matrix</span>
+      <span>装备品类矩阵</span>
       <span class="dash">—</span>
-      <span>17 Slots</span>
+      <span>17 个格子</span>
     </div>
     <h2>装备品类矩阵。<br>一格一家，专属、互不重叠。</h2>
     <p class="lede">联盟以设备类型为横轴、目标应用为纵轴，每一格只锁定一家装备厂。已锁定的位置不再接受同品类申请，招募中的格子标注高亮。</p>
 
     <div class="matrix-wrap">
       <div class="matrix-header">
-        <div>/ MATRIX v.0.1  ·  17 SLOTS</div>
+        <div>/ 装备品类矩阵 v.0.1  ·  17 格</div>
         <div class="matrix-legend">
           <span><i class="legend-box lb-locked"></i> 已锁定</span>
           <span><i class="legend-box lb-open"></i> 招募中</span>
@@ -1267,50 +1373,50 @@ footer {
         <tbody>
           <tr>
             <th class="row-header">多工位冷镦机</th>
-            <td class="cell locked"><span class="cell-num">01</span><span class="cell-status">Locked</span></td>
-            <td class="cell open"><span class="cell-num">02</span><span class="cell-status">Open</span></td>
-            <td class="cell locked"><span class="cell-num">03</span><span class="cell-status">Locked</span></td>
-            <td class="cell open"><span class="cell-num">04</span><span class="cell-status">Open</span></td>
+            <td class="cell locked" data-num="01" data-slot="多工位冷镦机 × 汽车紧固件"><span class="cell-num">01</span><span class="cell-status">已锁定</span></td>
+            <td class="cell open" data-num="02" data-slot="多工位冷镦机 × 建筑 / 重型"><span class="cell-num">02</span><span class="cell-status">招募中</span></td>
+            <td class="cell locked" data-num="03" data-slot="多工位冷镦机 × 不锈 / 精密"><span class="cell-num">03</span><span class="cell-status">已锁定</span></td>
+            <td class="cell open" data-num="04" data-slot="多工位冷镦机 × 微型 / 电子"><span class="cell-num">04</span><span class="cell-status">招募中</span></td>
           </tr>
           <tr>
             <th class="row-header">搓丝 / 滚丝机</th>
-            <td class="cell locked"><span class="cell-num">05</span><span class="cell-status">Locked</span></td>
-            <td class="cell open"><span class="cell-num">06</span><span class="cell-status">Open</span></td>
-            <td class="cell open"><span class="cell-num">07</span><span class="cell-status">Open</span></td>
-            <td class="cell locked"><span class="cell-num">08</span><span class="cell-status">Locked</span></td>
+            <td class="cell locked" data-num="05" data-slot="搓丝 / 滚丝机 × 汽车紧固件"><span class="cell-num">05</span><span class="cell-status">已锁定</span></td>
+            <td class="cell open" data-num="06" data-slot="搓丝 / 滚丝机 × 建筑 / 重型"><span class="cell-num">06</span><span class="cell-status">招募中</span></td>
+            <td class="cell open" data-num="07" data-slot="搓丝 / 滚丝机 × 不锈 / 精密"><span class="cell-num">07</span><span class="cell-status">招募中</span></td>
+            <td class="cell locked" data-num="08" data-slot="搓丝 / 滚丝机 × 微型 / 电子"><span class="cell-num">08</span><span class="cell-status">已锁定</span></td>
           </tr>
           <tr>
             <th class="row-header">螺母成型机</th>
-            <td class="cell locked"><span class="cell-num">09</span><span class="cell-status">Locked</span></td>
-            <td class="cell open"><span class="cell-num">10</span><span class="cell-status">Open</span></td>
+            <td class="cell locked" data-num="09" data-slot="螺母成型机 × 汽车紧固件"><span class="cell-num">09</span><span class="cell-status">已锁定</span></td>
+            <td class="cell open" data-num="10" data-slot="螺母成型机 × 建筑 / 重型"><span class="cell-num">10</span><span class="cell-status">招募中</span></td>
             <td class="cell empty">—</td>
             <td class="cell empty">—</td>
           </tr>
           <tr>
             <th class="row-header">热处理线</th>
-            <td class="cell open"><span class="cell-num">11</span><span class="cell-status">Open</span></td>
-            <td class="cell open"><span class="cell-num">12</span><span class="cell-status">Open</span></td>
+            <td class="cell open" data-num="11" data-slot="热处理线 × 汽车紧固件"><span class="cell-num">11</span><span class="cell-status">招募中</span></td>
+            <td class="cell open" data-num="12" data-slot="热处理线 × 建筑 / 重型"><span class="cell-num">12</span><span class="cell-status">招募中</span></td>
             <td class="cell empty">—</td>
             <td class="cell empty">—</td>
           </tr>
           <tr>
             <th class="row-header">表面处理</th>
-            <td class="cell open"><span class="cell-num">13</span><span class="cell-status">Open</span></td>
-            <td class="cell open"><span class="cell-num">14</span><span class="cell-status">Open</span></td>
+            <td class="cell open" data-num="13" data-slot="表面处理 × 汽车紧固件"><span class="cell-num">13</span><span class="cell-status">招募中</span></td>
+            <td class="cell open" data-num="14" data-slot="表面处理 × 建筑 / 重型"><span class="cell-num">14</span><span class="cell-status">招募中</span></td>
             <td class="cell empty">—</td>
             <td class="cell empty">—</td>
           </tr>
           <tr>
             <th class="row-header">模具 / 工装</th>
-            <td class="cell shared" colspan="4"><span class="cell-num">15</span><span class="cell-status">Shared · 不强制独占</span></td>
+            <td class="cell shared" data-num="15" data-slot="模具 / 工装 · 共享品类" colspan="4"><span class="cell-num">15</span><span class="cell-status">共享 · 不强制独占</span></td>
           </tr>
           <tr>
             <th class="row-header">自动检测 / 分选</th>
-            <td class="cell shared" colspan="4"><span class="cell-num">16</span><span class="cell-status">Shared · 不强制独占</span></td>
+            <td class="cell shared" data-num="16" data-slot="自动检测 / 分选 · 共享品类" colspan="4"><span class="cell-num">16</span><span class="cell-status">共享 · 不强制独占</span></td>
           </tr>
           <tr>
             <th class="row-header">整线集成 / MES</th>
-            <td class="cell self" colspan="4"><span class="cell-num">17</span><span class="cell-status">Mr.Marco 自营 · 联盟交付主体</span></td>
+            <td class="cell self" data-num="17" data-slot="整线集成 / MES" colspan="4"><span class="cell-num">17</span><span class="cell-status">Mr.Marco 自营 · 联盟交付主体</span></td>
           </tr>
         </tbody>
       </table>
@@ -1323,18 +1429,18 @@ footer {
   <div class="container">
     <div class="section-label">
       <span class="num">/05</span>
-      <span>Two Moats</span>
+      <span>联盟壁垒</span>
       <span class="dash">—</span>
-      <span>What single makers can't do</span>
+      <span>单家装备厂做不到的事</span>
     </div>
     <h2>联盟才能做到的两件事，<br>是 Mr.Marco 真正的护城河。</h2>
     <p class="lede">单家装备厂做不到的两件事，决定了海外客户为什么愿意付溢价、为什么会回头——而这两件事，是 Mr.Marco 联盟存在的根本理由。</p>
 
     <div class="moats-grid">
       <div class="moat-card">
-        <div class="moat-num">/ MOAT 01</div>
-        <h3>整线集成 · Turnkey Line</h3>
-        <p>海外客户经常不要"一台机器"，要"一条产线"——冷镦 + 搓丝 + 热处理 + 表面处理 + 自动化 + MES。单家装备厂做不了 turnkey；Mr.Marco 用联盟矩阵 + 自营集成团队，可以。客单价跃升一档。</p>
+        <div class="moat-num">/ 壁垒 01</div>
+        <h3>整线集成出海</h3>
+        <p>海外客户经常不要"一台机器"，要"一条产线"——冷镦 + 搓丝 + 热处理 + 表面处理 + 自动化 + MES。单家装备厂做不了整线交付；Mr.Marco 凭联盟矩阵 + 自营集成团队，可以。客单价跃升一档。</p>
         <div class="moat-stats">
           <div>
             <div class="moat-stat-value">3 — 8×</div>
@@ -1348,8 +1454,8 @@ footer {
       </div>
 
       <div class="moat-card">
-        <div class="moat-num">/ MOAT 02</div>
-        <h3>十年服务 · Decade Warranty</h3>
+        <div class="moat-num">/ 壁垒 02</div>
+        <h3>十年服务承诺</h3>
         <p>欧美客户买装备实质是买 10 年服务——备件、培训、维修响应、升级。单家装备厂养不起欧美本地服务点；Mr.Marco 在欧洲、北美、印度各建一个服务中心 + 备件仓，所有联盟成员共享。</p>
         <div class="moat-stats">
           <div>
@@ -1371,9 +1477,9 @@ footer {
   <div class="container">
     <div class="section-label">
       <span class="num">/11</span>
-      <span>Apply</span>
+      <span>申请入会</span>
       <span class="dash">—</span>
-      <span>Intake Open · 首批 10+ 创始席位招募中</span>
+      <span>首批 10+ 创始席位招募中</span>
     </div>
     <h2>申请加入 Mr.Marco 联盟。</h2>
     <p class="lede">提交基础档案即可启动评审。Mr.Marco 实行 <strong>30 天四道严审</strong>——初审问卷、实地评审、品类匹配、商务尽调，缺一不通。<strong>一格一家、宁缺毋滥。</strong>所有信息受 NDA 保护、不与第三方共享，详细产能与财务材料将在通过初审后单独提交。</p>
@@ -1544,7 +1650,7 @@ footer {
 
       <aside class="apply-aside">
         <div class="aside-block">
-          <div class="aside-label">/ NEXT · 30 天严审</div>
+          <div class="aside-label">/ 申请之后 · 30 天严审</div>
           <h3 class="aside-title">30 天完成四道评审，<br>每一关都不放水。</h3>
           <ol class="aside-steps">
             <li>
@@ -1567,7 +1673,7 @@ footer {
         </div>
 
         <div class="aside-block">
-          <div class="aside-label">/ PREPARE · 建议预先准备</div>
+          <div class="aside-label">/ 建议预先准备</div>
           <ul class="aside-list">
             <li>主力机型规格书与最新报价单</li>
             <li>ISO 9001 / CE / UL / BIS 认证副本</li>
@@ -1578,7 +1684,7 @@ footer {
         </div>
 
         <div class="aside-block aside-contact">
-          <div class="aside-label">/ OR · 线下沟通</div>
+          <div class="aside-label">/ 或 · 线下沟通</div>
           <div class="contact-row">
             <span class="contact-label">招商邮箱</span>
             <span class="contact-val">apply@mrmarco.global</span>
@@ -1607,10 +1713,29 @@ footer {
 <!-- ═══════════════════════ FOOTER ═══════════════════════ -->
 <footer>
   <div class="container footer-grid">
-    <div>MR.MARCO · GLOBAL FASTENER EQUIPMENT ALLIANCE</div>
-    <div>v 0.1 · DEMO BUILD · 2026</div>
+    <div>MR.MARCO · 中国紧固件装备出海联盟</div>
+    <div>v 0.1 · 演示版 · 2026</div>
   </div>
 </footer>
+
+<!-- ═══════════════════════ Slot Modal ═══════════════════════ -->
+<div class="slot-modal" id="slotModal" hidden role="dialog" aria-modal="true" aria-labelledby="slotModalTitle">
+  <div class="slot-modal-backdrop" data-modal-close></div>
+  <div class="slot-modal-card">
+    <button class="slot-modal-x" data-modal-close aria-label="关闭">×</button>
+    <div class="slot-modal-meta">
+      <span class="slot-modal-num" id="slotModalNum"></span>
+      <span class="slot-modal-status" id="slotModalStatus"></span>
+    </div>
+    <h3 class="slot-modal-title" id="slotModalTitle"></h3>
+    <p class="slot-modal-slot" id="slotModalSlot"></p>
+    <p class="slot-modal-body" id="slotModalBody"></p>
+    <div class="slot-modal-actions">
+      <button class="btn btn-secondary" data-modal-close>关闭</button>
+      <button class="btn btn-primary" data-modal-primary></button>
+    </div>
+  </div>
+</div>
 
 <script>
 (function () {
@@ -1636,6 +1761,112 @@ footer {
       b.dataset.active = (b.dataset.setTheme === t) ? 'true' : 'false';
     });
   }
+})();
+
+/* ─── Matrix Cell Interaction ─── */
+(function () {
+  const modal = document.getElementById('slotModal');
+  if (!modal) return;
+  const numEl = document.getElementById('slotModalNum');
+  const statusEl = document.getElementById('slotModalStatus');
+  const titleEl = document.getElementById('slotModalTitle');
+  const slotEl = document.getElementById('slotModalSlot');
+  const bodyEl = document.getElementById('slotModalBody');
+  const primaryBtn = modal.querySelector('[data-modal-primary]');
+  const slotInput = document.querySelector('input[name="slot"]');
+
+  const COPY = {
+    locked: {
+      status: '已锁定',
+      title: '此格已由创始成员锁定',
+      body: '该品类已通过 30 天严审、由一家创始装备厂签约锁定。Mr.Marco 实行品类排他——同品类不再接受新申请。如你的产品落在临近格子（不同应用场景或不同工艺），欢迎查看其他招募中的位置。',
+      primary: { label: '查看招募中的格子 →', action: 'pulse-open' }
+    },
+    self: {
+      status: 'Mr.Marco 自营',
+      title: '此格由 Mr.Marco 自营',
+      body: '整线集成 / MES 等联盟交付主体由 Mr.Marco 自营或独家深度绑定，不对外招募。如你有相关合作意向，欢迎通过线下渠道直接联系招商组。',
+      primary: { label: '联系招商组 →', action: 'contact' }
+    }
+  };
+
+  document.querySelectorAll('.cell:not(.empty)').forEach((cell) => {
+    cell.addEventListener('click', () => {
+      const num = cell.dataset.num || '';
+      const slot = cell.dataset.slot || '';
+      let type;
+      if (cell.classList.contains('locked')) type = 'locked';
+      else if (cell.classList.contains('open') || cell.classList.contains('shared')) type = 'apply';
+      else if (cell.classList.contains('self')) type = 'self';
+      else return;
+
+      if (type === 'apply') {
+        goToApply(slot);
+      } else {
+        openModal(type, num, slot);
+      }
+    });
+  });
+
+  function goToApply(slot) {
+    if (slotInput && slot) {
+      slotInput.value = slot;
+      flashField(slotInput);
+    }
+    const target = document.getElementById('apply');
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    setTimeout(() => slotInput && slotInput.focus({ preventScroll: true }), 700);
+  }
+
+  function openModal(type, num, slot) {
+    const c = COPY[type];
+    numEl.textContent = num ? `/ 第 ${num} 格` : '';
+    statusEl.textContent = c.status;
+    titleEl.textContent = c.title;
+    slotEl.textContent = slot || '';
+    bodyEl.textContent = c.body;
+    primaryBtn.textContent = c.primary.label;
+    modal.dataset.type = type;
+    modal.hidden = false;
+    requestAnimationFrame(() => modal.classList.add('show'));
+  }
+
+  function closeModal() {
+    modal.classList.remove('show');
+    setTimeout(() => { modal.hidden = true; }, 200);
+  }
+
+  function flashField(el) {
+    const orig = el.style.background;
+    el.style.background = 'rgba(201, 169, 97, 0.14)';
+    el.style.borderBottomColor = 'var(--brass)';
+    setTimeout(() => { el.style.background = orig; }, 1500);
+  }
+
+  modal.querySelectorAll('[data-modal-close]').forEach((b) => b.addEventListener('click', closeModal));
+
+  primaryBtn.addEventListener('click', () => {
+    const type = modal.dataset.type;
+    closeModal();
+    const action = COPY[type] && COPY[type].primary.action;
+    if (action === 'pulse-open') {
+      const m = document.getElementById('matrix');
+      if (m) m.scrollIntoView({ behavior: 'smooth' });
+      setTimeout(() => {
+        document.querySelectorAll('.cell.open').forEach((c) => {
+          c.classList.add('pulse');
+          setTimeout(() => c.classList.remove('pulse'), 1200);
+        });
+      }, 600);
+    } else if (action === 'contact') {
+      const c = document.querySelector('.aside-contact');
+      if (c) c.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !modal.hidden) closeModal();
+  });
 })();
 
 /* ─── Apply Form Submission ─── */
