@@ -203,21 +203,21 @@ h3 { font-size: 22px; margin-bottom: 16px; }
 
 /* ─── /01 HERO ─── */
 .hero {
-  min-height: calc(100vh - 64px);
+  min-height: calc((100vh - 64px) * 0.67);
   display: flex;
   align-items: center;
-  padding: 0;
+  padding: 64px 0;
   border-top: none;
 }
 .hero-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 80px;
+  gap: 64px;
   align-items: center;
   width: 100%;
 }
 .hero h1 {
-  font-size: 72px;
+  font-size: 56px;
   font-weight: 300;
 }
 .hero h1 em {
@@ -225,11 +225,11 @@ h3 { font-size: 22px; margin-bottom: 16px; }
   color: var(--brass);
   font-weight: 400;
 }
-.hero .lede { font-size: 20px; margin-top: 32px; }
+.hero .lede { font-size: 17px; margin-top: 24px; }
 .cta-row {
   display: flex;
   gap: 16px;
-  margin-top: 56px;
+  margin-top: 36px;
 }
 .btn {
   font-family: 'IBM Plex Mono', monospace;
@@ -258,8 +258,8 @@ h3 { font-size: 22px; margin-bottom: 16px; }
 
 /* ─── Heritage Strip (HERO) ─── */
 .heritage {
-  margin-top: 48px;
-  padding: 24px 0 28px;
+  margin-top: 28px;
+  padding: 18px 0 20px;
   border-top: 1px solid var(--ink-line);
   border-bottom: 1px solid var(--ink-line);
 }
@@ -268,7 +268,7 @@ h3 { font-size: 22px; margin-bottom: 16px; }
   font-size: 10px;
   letter-spacing: 0.18em;
   color: var(--brass);
-  margin-bottom: 18px;
+  margin-bottom: 12px;
   text-transform: uppercase;
 }
 .heritage-items {
