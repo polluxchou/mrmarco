@@ -104,8 +104,17 @@ nav .container {
   font-weight: 500;
   font-size: 18px;
   letter-spacing: 0.04em;
+  color: var(--paper);
+  text-decoration: none;
+  cursor: pointer;
+  transition: opacity 0.2s;
 }
-.logo .dot { color: var(--brass); }
+.logo:hover { opacity: 0.7; }
+.logo:hover .dot { color: var(--amber); }
+.logo .dot {
+  color: var(--brass);
+  transition: color 0.2s;
+}
 .nav-links {
   display: flex;
   gap: 32px;
@@ -1157,7 +1166,7 @@ footer {
 <!-- ═══════════════════════ NAV ═══════════════════════ -->
 <nav>
   <div class="container">
-    <div class="logo">MR<span class="dot">.</span>MARCO</div>
+    <a href="#" class="logo" id="logoLink" aria-label="返回首屏">MR<span class="dot">.</span>MARCO</a>
     <ul class="nav-links">
       <li><a href="#model">联盟模式</a></li>
       <li><a href="#matrix">装备矩阵</a></li>
@@ -1165,8 +1174,8 @@ footer {
       <li><a href="#apply">申请入会</a></li>
     </ul>
     <div class="theme-toggle" role="group" aria-label="Theme toggle">
-      <button class="theme-btn" data-set-theme="light" data-active="false">Day</button>
-      <button class="theme-btn" data-set-theme="dark" data-active="true">Night</button>
+      <button class="theme-btn" data-set-theme="light" data-active="false">浅色模式</button>
+      <button class="theme-btn" data-set-theme="dark" data-active="true">深色模式</button>
     </div>
     <a href="#apply" class="nav-cta">申请入会 →</a>
   </div>
@@ -1866,6 +1875,16 @@ footer {
 
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && !modal.hidden) closeModal();
+  });
+})();
+
+/* ─── Logo · Scroll to Top ─── */
+(function () {
+  const logo = document.getElementById('logoLink');
+  if (!logo) return;
+  logo.addEventListener('click', (e) => {
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 })();
 
