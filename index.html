@@ -475,11 +475,11 @@ h3 { font-size: 22px; margin-bottom: 16px; }
   list-style: none;
 }
 .model-items li {
-  padding: 14px 0;
+  padding: 18px 0;
   font-size: 14px;
   display: flex;
   gap: 16px;
-  align-items: baseline;
+  align-items: flex-start;
   border-bottom: 1px dashed var(--ink-line);
 }
 .model-items li:last-child { border-bottom: none; }
@@ -488,6 +488,22 @@ h3 { font-size: 22px; margin-bottom: 16px; }
   font-size: 11px;
   color: var(--steel-dim);
   min-width: 24px;
+  padding-top: 3px;
+}
+.model-items .item-body { flex: 1; min-width: 0; }
+.model-items .item-title {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--paper);
+  line-height: 1.5;
+  margin-bottom: 6px;
+}
+.model-items .item-desc {
+  font-size: 12.5px;
+  font-weight: 400;
+  color: var(--paper-soft);
+  line-height: 1.7;
+  letter-spacing: 0.01em;
 }
 .model-divider {
   background: var(--ink-soft);
@@ -682,6 +698,61 @@ h3 { font-size: 22px; margin-bottom: 16px; }
   text-transform: uppercase;
   color: var(--steel);
   margin-top: 4px;
+}
+
+/* ─── /11 APPLY · Quick Founder Track ─── */
+.quick-track {
+  margin: 56px 0 32px;
+  padding: 36px 40px 32px 36px;
+  border: 1px solid var(--brass);
+  background: var(--ink-soft);
+  position: relative;
+}
+.quick-track::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  bottom: -1px;
+  left: 0;
+  width: 4px;
+  background: var(--brass);
+}
+.quick-track-head { margin-bottom: 28px; }
+.quick-track-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  color: var(--brass);
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+.quick-track-title {
+  font-family: 'IBM Plex Serif', serif;
+  font-size: 24px;
+  font-weight: 500;
+  color: var(--paper);
+  margin-bottom: 10px;
+  line-height: 1.4;
+}
+.quick-track-meta {
+  font-size: 13.5px;
+  color: var(--paper-soft);
+  line-height: 1.65;
+  max-width: 760px;
+}
+.quick-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 28px;
+  margin-bottom: 28px;
+}
+.quick-submit {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  padding-top: 24px;
+  border-top: 1px dashed var(--ink-line);
 }
 
 /* ─── /11 APPLY ─── */
@@ -1151,6 +1222,7 @@ footer {
   .heritage-items { flex-direction: column; gap: 16px; }
   .heritage-rule { display: none; }
   .form-submit { flex-direction: column; align-items: flex-start; gap: 16px; }
+  .quick-row { grid-template-columns: 1fr 1fr; }
 }
 @media (max-width: 640px) {
   .checkbox-grid { grid-template-columns: 1fr; }
@@ -1158,6 +1230,9 @@ footer {
   h2 { font-size: 30px; }
   .theme-toggle { margin-right: 12px; }
   .theme-btn { padding: 6px 10px; }
+  .quick-row { grid-template-columns: 1fr; gap: 20px; }
+  .quick-track { padding: 28px 24px; }
+  .quick-submit { flex-direction: column; align-items: flex-start; gap: 16px; }
 }
 </style>
 </head>
@@ -1330,16 +1405,76 @@ footer {
           <div class="model-col-tag">/ 联盟总承包</div>
         </div>
         <ul class="model-items">
-          <li><span class="idx">01</span><span>海外品牌与市场（站点、展会、SEM）</span></li>
-          <li><span class="idx">02</span><span>方案设计与整线集成</span></li>
-          <li><span class="idx">03</span><span>客户开发、报价与合同</span></li>
-          <li><span class="idx">04</span><span>认证统办（CE / UL / BIS）</span></li>
-          <li><span class="idx">05</span><span>出口、报关、国际物流</span></li>
-          <li><span class="idx">06</span><span>海外安装、调试、培训</span></li>
-          <li><span class="idx">07</span><span>FAT / SAT 客户验收</span></li>
-          <li><span class="idx">08</span><span>备件供应链与远程诊断</span></li>
-          <li><span class="idx">09</span><span>十年服务网络（EU · NA · IN）</span></li>
-          <li><span class="idx">10</span><span>结算、汇率、应收风险吸收</span></li>
+          <li>
+            <span class="idx">01</span>
+            <div class="item-body">
+              <div class="item-title">海外品牌与市场（站点、展会、SEM）</div>
+              <p class="item-desc">多语种站点（英 / 德 / 西）、Google Ads / LinkedIn 精准投放、Wire Düsseldorf 与 Fastener Fair 等核心展会包展位——从品牌识别到询盘漏斗的完整运营，单家装备厂三年也烧不出的资产，加入联盟即用。</p>
+            </div>
+          </li>
+          <li>
+            <span class="idx">02</span>
+            <div class="item-body">
+              <div class="item-title">方案设计与整线集成</div>
+              <p class="item-desc">专属工程团队按客户工艺需求拆 BOM、写技术方案、出产线布局图，跨成员厂拼装整线（冷镦 + 搓丝 + 热处理 + MES），把单机贸易升级成交钥匙交付，客单价跃升 3–8 倍。</p>
+            </div>
+          </li>
+          <li>
+            <span class="idx">03</span>
+            <div class="item-body">
+              <div class="item-title">客户开发、报价与合同</div>
+              <p class="item-desc">欧美本地销售 + 中方招商组联动直接对接客户工程师，跟单 6–18 个月技术性销售；统一对外报价、统一签约、统一收款——避免成员厂在同一客户面前自相杀价。</p>
+            </div>
+          </li>
+          <li>
+            <span class="idx">04</span>
+            <div class="item-body">
+              <div class="item-title">认证统办（CE / UL / BIS）</div>
+              <p class="item-desc">联合 TÜV / SGS / DEKRA 等第三方机构统办欧盟 CE、北美 UL/CSA、印度 BIS——单机认证 50–150 万元、12–24 个月周期由联盟统筹推进，成员共担成本，三大市场一次性通行。</p>
+            </div>
+          </li>
+          <li>
+            <span class="idx">05</span>
+            <div class="item-body">
+              <div class="item-title">出口、报关、国际物流</div>
+              <p class="item-desc">出口资质、信用证、外汇结算、超规件海运打包、欧美主港订舱、保险、目的港清关与最后一公里——一票到底的国际供应链深度，单家装备厂养一支完整外贸团队也难以达到。</p>
+            </div>
+          </li>
+          <li>
+            <span class="idx">06</span>
+            <div class="item-body">
+              <div class="item-title">海外安装、调试、培训</div>
+              <p class="item-desc">驻欧洲、北美、印度的双语服务工程师团队赴客户现场，2–8 周完成设备就位、电气调试与产能达产；按工种分级培训操作工与维修工，让客户产线一次跑通、稳定生产。</p>
+            </div>
+          </li>
+          <li>
+            <span class="idx">07</span>
+            <div class="item-body">
+              <div class="item-title">FAT / SAT 客户验收</div>
+              <p class="item-desc">工厂验收 (FAT) 与现场验收 (SAT) 双节点：Mr.Marco QC 工程师驻厂监造、客户来华现场签字、设备到位再现场签字——节奏可追溯、责任边界清晰，建立大客户最看重的信任度。</p>
+            </div>
+          </li>
+          <li>
+            <span class="idx">08</span>
+            <div class="item-body">
+              <div class="item-title">备件供应链与远程诊断</div>
+              <p class="item-desc">欧、美、印三地备件仓常备模具、易损件与控制板等关键件，72 小时现场到货；远程 PLC 诊断 + 软件 OTA 升级覆盖装备全生命周期，把"售后包袱"转化为持续付费的服务收入。</p>
+            </div>
+          </li>
+          <li>
+            <span class="idx">09</span>
+            <div class="item-body">
+              <div class="item-title">十年服务网络（欧洲 · 北美 · 印度）</div>
+              <p class="item-desc">三地本地服务节点 + 备件仓，对客户书面承诺 10 年备件供应、年度巡检与操作工再培训——欧美客户买装备实质就是买十年服务，单家装备厂养不起，联盟撑得住。</p>
+            </div>
+          </li>
+          <li>
+            <span class="idx">10</span>
+            <div class="item-body">
+              <div class="item-title">结算、汇率、应收风险吸收</div>
+              <p class="item-desc">海外实体直接收款、按月对账结算给成员厂；汇率波动与客户违约由 Mr.Marco 兜底吸收——成员收到的是稳定的人民币现金流。把外贸最大的两个隐性风险移除，让生产专注于生产。</p>
+            </div>
+          </li>
         </ul>
       </div>
     </div>
@@ -1491,7 +1626,39 @@ footer {
       <span>首批 10+ 创始席位招募中</span>
     </div>
     <h2>申请加入 Mr.Marco 联盟。</h2>
-    <p class="lede">提交基础档案即可启动评审。Mr.Marco 实行 <strong>30 天四道严审</strong>——初审问卷、实地评审、品类匹配、商务尽调，缺一不通。<strong>一格一家、宁缺毋滥。</strong>所有信息受 NDA 保护、不与第三方共享，详细产能与财务材料将在通过初审后单独提交。</p>
+    <p class="lede">Mr.Marco 实行 <strong>30 天四道严审</strong>——初审问卷、实地评审、品类匹配、商务尽调，缺一不通。<strong>一格一家、宁缺毋滥。</strong>所有信息受 NDA 保护、不与第三方共享，详细产能与财务材料将在通过初审后单独提交。下方两条路径任选其一：<strong>创始人快速通道</strong>（仅留 4 个联系字段）或 <strong>完整申请</strong>（直接进入正式评审）。</p>
+
+    <div class="quick-track">
+      <div class="quick-track-head">
+        <div class="quick-track-label">/ 创始人快速通道 · FOUNDER FAST TRACK</div>
+        <h3 class="quick-track-title">时间紧迫？只留 4 个联系字段，<br>我们 24 小时内主动联系。</h3>
+        <p class="quick-track-meta">适合装备厂创始人 / 总经理。完成快速登记后由 Mr.Marco 招商组直接对接，跳过表单细节、在电话或面谈中走完后续流程。</p>
+      </div>
+      <form class="quick-form" id="quickForm" novalidate>
+        <div class="quick-row">
+          <div class="form-field">
+            <label>姓名 <span class="req">*</span></label>
+            <input type="text" name="q-name" required>
+          </div>
+          <div class="form-field">
+            <label>公司 <span class="req">*</span></label>
+            <input type="text" name="q-company" required>
+          </div>
+          <div class="form-field">
+            <label>邮箱 <span class="req">*</span></label>
+            <input type="email" name="q-email" required>
+          </div>
+          <div class="form-field">
+            <label>手机 / 微信 <span class="req">*</span></label>
+            <input type="text" name="q-phone" required>
+          </div>
+        </div>
+        <div class="quick-submit">
+          <button type="submit" class="btn btn-primary">提交联系信息 <span class="arrow">→</span></button>
+          <span class="form-note">或填写下方完整申请，直接进入正式评审流程 ↓</span>
+        </div>
+      </form>
+    </div>
 
     <div class="apply-grid">
       <form class="apply-form" id="applyForm" novalidate>
@@ -1890,16 +2057,23 @@ footer {
 
 /* ─── Apply Form Submission ─── */
 (function () {
-  const form = document.getElementById('applyForm');
-  if (!form) return;
+  const fullForm = document.getElementById('applyForm');
+  const quickForm = document.getElementById('quickForm');
   const success = document.getElementById('applySuccess');
   const receiptEl = document.getElementById('receiptNo');
   const aside = document.querySelector('.apply-aside');
+  const quickTrack = document.querySelector('.quick-track');
 
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
+  function genReceipt(prefix) {
+    const d = new Date();
+    const ymd = d.getFullYear().toString().slice(2) +
+                String(d.getMonth() + 1).padStart(2, '0') +
+                String(d.getDate()).padStart(2, '0');
+    const rand = Math.random().toString(36).slice(2, 6).toUpperCase();
+    return `${prefix}-${ymd}-${rand}`;
+  }
 
-    // Light client-side validation for required fields
+  function validate(form) {
     const required = form.querySelectorAll('[required]');
     let firstInvalid = null;
     required.forEach((el) => {
@@ -1908,25 +2082,44 @@ footer {
       if (!ok && !firstInvalid) firstInvalid = el;
       if (!ok && el.type !== 'checkbox') el.style.borderBottomColor = 'var(--danger)';
     });
-    if (firstInvalid) {
-      firstInvalid.focus();
-      firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      return;
-    }
+    return firstInvalid;
+  }
 
-    // Generate receipt number: MM-YYMMDD-XXXX
-    const d = new Date();
-    const ymd = d.getFullYear().toString().slice(2) +
-                String(d.getMonth() + 1).padStart(2, '0') +
-                String(d.getDate()).padStart(2, '0');
-    const rand = Math.random().toString(36).slice(2, 6).toUpperCase();
-    receiptEl.textContent = `MM-${ymd}-${rand}`;
-
-    form.hidden = true;
+  function showSuccess(receipt) {
+    if (fullForm) fullForm.hidden = true;
+    if (quickForm) quickForm.hidden = true;
+    if (quickTrack) quickTrack.style.display = 'none';
     if (aside) aside.style.display = 'none';
+    receiptEl.textContent = receipt;
     success.hidden = false;
     success.scrollIntoView({ behavior: 'smooth', block: 'center' });
-  });
+  }
+
+  if (fullForm) {
+    fullForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const invalid = validate(fullForm);
+      if (invalid) {
+        invalid.focus();
+        invalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+      }
+      showSuccess(genReceipt('MM'));
+    });
+  }
+
+  if (quickForm) {
+    quickForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const invalid = validate(quickForm);
+      if (invalid) {
+        invalid.focus();
+        invalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+      }
+      showSuccess(genReceipt('MMQ'));
+    });
+  }
 })();
 </script>
 
